@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+BP=$(pwd)
+
+source ./config.conf
+source ./scripts/config.sh
+source ./scripts/create.sh
+source ./scripts/delete.sh
+source ./scripts/tick-deploy.sh
+source ./scripts/tig-deploy.sh
+
+case $1 in
+  config)
+    config $2 $3
+    exit 0
+    ;;
+  create)
+    create $2 $3
+    exit 0
+    ;;
+  delete)
+    delete $2 $3
+    exit 0
+    ;;
+  tick)
+    tick-deploy $2 $3
+    exit 0
+    ;;
+  tig)
+    tig-deploy $2 $3
+    exit 0
+    ;;
+  *)
+    echo "USAGE: $0 $1"
+    echo ""
+    config-usage
+    create-usage
+    delete-usage
+    tick-deploy-usage
+	tig-deploy-usage
+    exit 1
+    ;;
+esac  

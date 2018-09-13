@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jobmanager-deployment
+  namespace: flink
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: jobmanager
+    spec:
+      hostNetwork: true
+      containers:
+        - name: jobmanager
+          image: wuchangping/flink:1.6.0
+          args: ["jobmanager", "jobmanager.rpc.address=jobmanager.flink.svc.cluster.local", "blob.server.port=7070"]
+          ports:
+            - containerPort: 6123
+            - containerPort: 8081
+            - containerPort: 7070
+          resources:
+            requests:
+              cpu: 100m

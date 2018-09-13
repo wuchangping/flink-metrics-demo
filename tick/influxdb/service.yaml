@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+  namespace: flink
+spec:
+  ports:
+  - port: 8086
+    targetPort: 8086
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: influxdb

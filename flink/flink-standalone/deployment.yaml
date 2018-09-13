@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flink
+  namespace: flink
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: flink
+    spec:
+      hostNetwork: true
+      containers:
+      - image: wuchangping/flink:1.6.0
+        imagePullPolicy: Always
+        args: ["local"]
+        name: flink
+        ports:
+        - containerPort: 8081
+          name: http
+        - containerPort: 6123
+          name: rpc
+        - containerPort: 6124
+          name: blob
+        - containerPort: 6125
+          name: query
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: 100m
+            memory: 10Mi

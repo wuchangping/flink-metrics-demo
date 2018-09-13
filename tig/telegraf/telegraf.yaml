@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: telegraf
+  name: telegraf
+  namespace: flink
+spec:
+  template:
+    metadata:
+      labels:
+        app: telegraf
+    spec:
+      containers:
+        - name: telegraf
+          image: telegraf:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8125
+            name: metrics
+            hostPort: 8125
+            protocol: UDP
+          volumeMounts:
+            - mountPath: /etc/telegraf
+              name: telegraf
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 10Mi
+      volumes:
+      - name: telegraf
+        configMap:
+          name: telegraf-config 

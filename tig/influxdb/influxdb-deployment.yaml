@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: influxdb
+  labels:
+    app: influxdb
+  namespace: flink
+spec:
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8083
+          name: admin
+        - containerPort: 8086
+          name: http
+        volumeMounts:
+        - name: influxdb-data
+          mountPath: /var/lib/influxdb
+        resources:
+          limits:
+            cpu: 1
+            memory: 3Gi
+          requests:
+            cpu: 100m
+            memory: 10Mi
+      volumes:
+      - name: influxdb-data
+        gcePersistentDisk:
+          pdName: influxdb-data
+          fsType: ext4
