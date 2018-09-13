@@ -8,7 +8,6 @@ spec:
   selector:
     component: jobmanager
   ports:
-    - port: 8081
-      targetPort: 8081
-      name: http
+    - name: ui
+      port: 8081
   

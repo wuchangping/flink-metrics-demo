@@ -6,19 +6,14 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8081
-    name: http
-    targetPort: 8081
-    protocol: TCP
-  - port: 6123
-    name: rpc
-    targetPort: 6123
-  - port: 6124
-    name: blob
-    targetPort: 6124
-  - port: 6125
-    name: query
-    targetPort: 6125
+  - name: ui
+    port: 8081
+  - name: rpc
+    port: 6123
+  - name: blob
+    port: 6124
+  - name: query
+    port: 6125
   selector:
     app: flink
     component: jobmanager

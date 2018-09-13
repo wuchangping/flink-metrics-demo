@@ -14,11 +14,14 @@ spec:
       containers:
         - name: taskmanager
           image: wuchangping/flink:1.6.0
-          args: ["taskmanager", "jobmanager.rpc.address=jobmanager.flink.svc.cluster.local", "blob.server.port=7070"]
+          args: ["taskmanager", "jobmanager.rpc.address=localhost"]
           ports:
             - containerPort: 6121
+              name: data
             - containerPort: 6122
-            - containerPort: 7070
+              name: rpc
+            - containerPort: 6125
+              name: query
           resources:
             requests:
               cpu: 100m

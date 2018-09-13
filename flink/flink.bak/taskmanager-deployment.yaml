@@ -24,9 +24,7 @@ spec:
           name: rpc
         - containerPort: 6125
           name: query
-        - containerPort: 8081
-          name: http
- #       env:
- #       - name: JOB_MANAGER_RPC_ADDRESS
- #         value: flink-jobmanager
+#        env:
+#        - name: JOB_MANAGER_RPC_ADDRESS
+#          value: flink-jobmanager
           
