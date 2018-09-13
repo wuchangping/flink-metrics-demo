@@ -34,8 +34,9 @@ This command is a shortcut that runs following commands in order:
 Once the `EXTERNAL-IP` is visible visit it in your web browser. The URLs for configuring Influx and Kapacitor from Chronograf are as follows:
 
 ```
-InfluxDB: http://influxdb.tick:8086
-Kapacitor: http://kapacitor.tick:8086
+InfluxDB: http://influxdb.flink:8086
+Kapacitor: http://kapacitor.flink:8086
+Ddefault database: telegraf
 ```
 
 ##### Create a TIG stack
