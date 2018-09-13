@@ -13,12 +13,11 @@ delete-tigcluster () {
 delete-tickdisks () {
   echo "Deleting disks for tick..."
   gcloud compute disks delete chronograf kapacitor influxdb --zone=$ZONE
-  gcloud compute disks delete influxdb-data grafana-data --zone=$ZONE
 }
 
 delete-tigdisks () {
-  gcloud compute disks delete influxdb-data --zone=$ZONE
-  gcloud compute disks delete grafana-data --zone=$ZONE
+  echo "Deleting disks for tig..."
+  gcloud compute disks delete influxdb-data grafana-data --zone=$ZONE
 }
 
 delete-namespace () {
@@ -45,15 +44,11 @@ HERE
 
 delete () {
   case $1 in
-    flink)
-    flink-standalone)
-    tick)
-    tig)
-	ns)
+    ns | flink | tick | tig)
       delete-namespace
       ;;
-	tickcluster)
-      delete-tigcluster
+    tickcluster)
+      delete-tickcluster
       ;;
     tigcluster)
       delete-tigcluster
@@ -61,7 +56,7 @@ delete () {
     tickdisks)
       delete-tickdisks
       ;;
-	tigdisks)
+    tigdisks)
       delete-tigdisks
       ;;
     *)

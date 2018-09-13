@@ -37,7 +37,7 @@ case $1 in
     create-usage
     delete-usage
     tick-deploy-usage
-	tig-deploy-usage
+    tig-deploy-usage
     exit 1
     ;;
 esac  

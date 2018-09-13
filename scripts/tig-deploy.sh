@@ -9,14 +9,14 @@ tig-deploy () {
       sleep 2
       create tigdisks
       sleep 2
+      create namespace
       create tig
       sleep 2
       create flink
       exit 0
       ;;
     destroy)
-      delete flink
-      delete tick
+      delete ns
       delete tigcluster
       delete tigdisks
       exit 0

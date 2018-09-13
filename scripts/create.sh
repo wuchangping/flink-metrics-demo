@@ -32,8 +32,8 @@ create-tickdisks () {
 create-tick () {
   echo "Creating tick stack..."
   echo "tick is the full stack of InfluxData products running in production configuration"
-  kubectl create configmap --namespace tick telegraf-config --from-file $BP/tick/telegraf/telegraf.conf
-  kubectl create configmap --namespace tick influxdb-config --from-file $BP/tick/influxdb/influxdb.conf
+  kubectl create configmap --namespace flink telegraf-config --from-file $BP/tick/telegraf/telegraf.conf
+  kubectl create configmap --namespace flink influxdb-config --from-file $BP/tick/influxdb/influxdb.conf
   kube $BP/tick/influxdb/deployment.yaml
   kube $BP/tick/influxdb/service.yaml
   kube $BP/tick/kapacitor/deployment.yaml
@@ -71,7 +71,7 @@ create-tig () {
   kube $BP/tig/influxdb/influxdb-deployment.yaml
   kube $BP/tig/grafana/grafana-service.yaml
   kube $BP/tig/grafana/grafana-deployment.yaml
-  kubectl create configmap --namespace tig telegraf-config --from-file $BP/tig/telegraf/telegraf.conf
+  kubectl create configmap --namespace flink telegraf-config --from-file $BP/tig/telegraf/telegraf.conf
   kube $BP/tig/telegraf/telegraf.yaml
 
   echo "Waiting for public IP..."
@@ -85,10 +85,10 @@ create-tig () {
 
 create-flink () {
   echo "Creating flink..."
-  kube $BP/flink/jobmanager-deployment.yaml
-  kube $BP/flink/jobmanager-service.yaml
-  kube $BP/flink/jobmanager-webui-service.yaml
-  kube $BP/flink/taskmanager-deployment.yaml
+  kube $BP/flink/flink/jobmanager-deployment.yaml
+  kube $BP/flink/flink/jobmanager-service.yaml
+  kube $BP/flink/flink/jobmanager-webui-service.yaml
+  kube $BP/flink/flink/taskmanager-deployment.yaml
   
   echo "kubectl get svc --namespace flink  "
   kubectl get svc --namespace flink  
@@ -96,18 +96,18 @@ create-flink () {
 
 create-flink-standalone () {
   echo "Creating flink standalone..."
-  kube $BP/flink-standalone/service.yaml
-  kube $BP/flink-standalone/deployment.yaml
+  kube $BP/flink/flink-standalone/service.yaml
+  kube $BP/flink/flink-standalone/deployment.yaml
   
   echo "kubectl get svc --namespace flink  "
   kubectl get svc --namespace flink  
 }
 
 create-flink-bak () {
-  echo "Creating flink..."
-  kube $BP/flink.bak/flink-service.yaml
-  kube $BP/flink.bak/jobmanager-deployment.yaml
-  kube $BP/flink.bak/taskmanager-deployment.yaml
+  echo "Creating flink.bak..."
+  kube $BP/flink/flink.bak/flink-service.yaml
+  kube $BP/flink/flink.bak/jobmanager-deployment.yaml
+  kube $BP/flink/flink.bak/taskmanager-deployment.yaml
 
   echo "kubectl get svc --namespace flink  "
   kubectl get svc --namespace flink  
@@ -120,6 +120,8 @@ create-usage () {
   cat <<-HERE 
   $0 create
   - create has the following subcommands
+    - creates namespace to run this example
+    $ $0 create namespace
   
     - creates cluster to run this example
     $ $0 create tigcluster | tickcluster

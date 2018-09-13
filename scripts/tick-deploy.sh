@@ -9,14 +9,14 @@ tick-deploy () {
       sleep 2
       create tickdisks
       sleep 2
+      create namespace
       create tick
       sleep 2
       create flink
       exit 0
       ;;
     destroy)
-      delete flink
-      delete tick
+      delete ns
       delete tickcluster
       delete tickdisks
       exit 0
