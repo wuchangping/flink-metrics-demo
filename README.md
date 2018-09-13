@@ -35,7 +35,7 @@ Once the `EXTERNAL-IP` is visible visit it in your web browser. The URLs for con
 
 ```
 InfluxDB: http://influxdb.flink:8086
-Kapacitor: http://kapacitor.flink:8086
+Kapacitor: http://influxdb.flink:9092
 Ddefault database: telegraf
 ```
 
