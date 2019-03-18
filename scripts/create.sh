@@ -32,8 +32,8 @@ create-tickdisks () {
 create-tick () {
   echo "Creating tick stack..."
   echo "tick is the full stack of InfluxData products running in production configuration"
-  kubectl create configmap --namespace flink telegraf-config --from-file $BP/tick/telegraf/telegraf.conf
-  kubectl create configmap --namespace flink influxdb-config --from-file $BP/tick/influxdb/influxdb.conf
+  kubectl create configmap --namespace $NAMESPACE telegraf-config --from-file $BP/tick/telegraf/telegraf.conf
+  kubectl create configmap --namespace $NAMESPACE influxdb-config --from-file $BP/tick/influxdb/influxdb.conf
   kube $BP/tick/influxdb/deployment.yaml
   kube $BP/tick/influxdb/service.yaml
   kube $BP/tick/kapacitor/deployment.yaml
@@ -42,8 +42,8 @@ create-tick () {
   kube $BP/tick/chronograf/deployment.yaml
   kube $BP/tick/chronograf/service.yaml
   echo "Waiting for public IP..."
-  echo "kubectl get svc --namespace flink "
-  kubectl get svc --namespace flink  
+  echo "kubectl get svc --namespace default "
+  kubectl get svc --namespace $NAMESPACE  
 }
 
 

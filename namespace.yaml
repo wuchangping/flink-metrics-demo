@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: flink
+  name: default
   labels:
-    name: flink
+    name: default
