@@ -4,7 +4,7 @@ metadata:
   name: influxdb
   labels:
     app: influxdb
-  namespace: flink
+  namespace: demo
 spec:
   template:
     metadata:
