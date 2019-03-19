@@ -12,7 +12,7 @@ tick-deploy () {
       create namespace
       create tick
       sleep 2
-      #create flink
+      create flink-standalone
       exit 0
       ;;
     destroy)

@@ -71,12 +71,12 @@ create-tig () {
   kube $BP/tig/influxdb/influxdb-deployment.yaml
   kube $BP/tig/grafana/grafana-service.yaml
   kube $BP/tig/grafana/grafana-deployment.yaml
-  kubectl create configmap --namespace flink telegraf-config --from-file $BP/tig/telegraf/telegraf.conf
+  kubectl create configmap --namespace $NAMESPACE telegraf-config --from-file $BP/tig/telegraf/telegraf.conf
   kube $BP/tig/telegraf/telegraf.yaml
 
   echo "Waiting for public IP..."
-  echo "kubectl get svc --namespace flink  "
-  kubectl get svc --namespace flink
+  echo "kubectl get svc --namespace xx  "
+  kubectl get svc --namespace $NAMESPACE
 }
 
 ##
@@ -90,8 +90,8 @@ create-flink () {
   kube $BP/flink/flink/jobmanager-webui-service.yaml
   kube $BP/flink/flink/taskmanager-deployment.yaml
   
-  echo "kubectl get svc --namespace flink  "
-  kubectl get svc --namespace flink  
+  echo "kubectl get svc --namespace xx  "
+  kubectl get svc --namespace $NAMESPACE  
 }
 
 create-flink-standalone () {
@@ -99,8 +99,8 @@ create-flink-standalone () {
   kube $BP/flink/flink-standalone/service.yaml
   kube $BP/flink/flink-standalone/deployment.yaml
   
-  echo "kubectl get svc --namespace flink  "
-  kubectl get svc --namespace flink  
+  echo "kubectl get svc --namespace  xx "
+  kubectl get svc --namespace $NAMESPACE  
 }
 
 create-flink-bak () {
@@ -109,8 +109,8 @@ create-flink-bak () {
   kube $BP/flink/flink.bak/jobmanager-deployment.yaml
   kube $BP/flink/flink.bak/taskmanager-deployment.yaml
 
-  echo "kubectl get svc --namespace flink  "
-  kubectl get svc --namespace flink  
+  echo "kubectl get svc --namespace xx  "
+  kubectl get svc --namespace $NAMESPACE  
 }
 
 

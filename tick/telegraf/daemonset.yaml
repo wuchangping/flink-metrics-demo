@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: telegraf
-  namespace: default
+  namespace: demo
 spec:
   template:
     metadata:

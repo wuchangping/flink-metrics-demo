@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: default
+  name: demo
   labels:
-    name: default
+    name: demo

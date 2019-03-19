@@ -21,7 +21,7 @@ delete-tigdisks () {
 }
 
 delete-namespace () {
-  kubectl delete ns flink
+  kubectl delete ns $NAMESPACE
 }
 
 
